@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Will you be my wifee..?</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lilita+One&family=Poppins:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#14060F; --glow:rgba(255,92,147,.28); --card:rgba(38,13,31,.94); --line:rgba(255,140,180,.24);
+  --ink:#FFE9F1; --muted:#C79DB2; --pink:#FF5C93; --pink2:#FF8FB1; --opt:rgba(255,255,255,.06);
+  --pass:#FFF1F6; --pass-ink:#4A1531;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#FFE3EE; --glow:rgba(255,92,147,.3); --card:rgba(255,250,252,.96); --line:rgba(200,60,110,.25);
+    --ink:#4A1531; --muted:#8A5573; --opt:rgba(224,62,138,.07); --pass:#fff; color-scheme:light;
+  }
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  background:radial-gradient(70% 45% at 50% 28%,var(--glow),transparent 70%),var(--bg);
+  color:var(--ink); font-family:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  display:flex; align-items:center; justify-content:center; overflow:hidden; touch-action:manipulation;
+}
+.card{
+  width:min(92vw,400px); height:min(86vh,660px); border-radius:30px; border:1px solid var(--line);
+  background:var(--card); padding:18px 22px 24px; display:flex; flex-direction:column;
+  box-shadow:0 24px 70px rgba(0,0,0,.35); position:relative; z-index:2;
+}
+.bar{display:flex; gap:6px}
+.bar i{flex:1; height:3px; border-radius:3px; background:var(--line); transition:background .3s}
+.bar i.on{background:linear-gradient(90deg,var(--pink),var(--pink2))}
+.step{display:none; flex:1; flex-direction:column; align-items:center; justify-content:center; text-align:center; animation:in .45s ease}
+.step.on{display:flex}
+@keyframes in{from{opacity:0}}
+h1{font:700 clamp(34px,10vw,44px)/1.1 "Dancing Script",Georgia,cursive; margin:6px 0 10px}
+p{margin:0 0 22px; color:var(--muted); font-size:14px; line-height:1.55}
+
+/* Bears */
+.bears{position:relative; display:flex; align-items:flex-end; justify-content:center; height:132px; margin-top:10px}
+.bear{width:112px; height:auto; overflow:visible; cursor:pointer; -webkit-tap-highlight-color:transparent; transform:translate(var(--tx,0px),var(--ty,0px)) rotate(var(--r,0deg)); transition:transform .45s cubic-bezier(.3,1.5,.5,1)}
+.bear .f{fill:var(--fur)} .bear .e{fill:var(--ear)} .bear .k{fill:#3A1030}
+.bear .bl{fill:#FF8FB8; opacity:.55; transition:opacity .2s} .bear .sm{opacity:0}
+.bear .bd{transform-box:fill-box; transform-origin:50% 100%; animation:br 3s ease-in-out infinite}
+.bear .hd{transform-box:fill-box; transform-origin:50% 100%; animation:sway 4.4s ease-in-out infinite}
+.bear .eyes{transform-box:fill-box; transform-origin:center; animation:blink 4.2s infinite}
+.bear .pp{transform:translate(var(--ex,0px),var(--ey,0px))}
+.bear .ear{transform-box:fill-box; transform-origin:50% 80%; animation:wig 5.5s infinite}
+.bear .ear.b{animation-delay:.25s}
+.bear.him .eyes{animation-delay:-1.7s} .bear.him .hd{animation-delay:-1.3s} .bear.him .ear{animation-delay:-2.4s}
+.bear .arm{transform-box:fill-box; transform-origin:50% 10%; transition:transform .4s cubic-bezier(.3,1.5,.5,1)}
+.bear .arm.l{transform:rotate(16deg)} .bear .arm.r{transform:rotate(-16deg)}
+.bear.wave .arm.r{animation:wave .55s ease-in-out infinite alternate}
+.hug .her .arm.r{transform:rotate(-85deg)} .hug .him .arm.l{transform:rotate(85deg)}
+.hug .her{--tx:16px; --r:11deg} .hug .him{--tx:-16px; --r:-11deg}
+.hug .m1,.happy .m1{opacity:0} .hug .sm,.happy .sm,.hug .bl,.happy .bl{opacity:1}
+.bear.jump{animation:jump .6s ease-out}
+.pop{position:fixed; z-index:8; pointer-events:none; font-size:20px; animation:pop 1.1s ease-out forwards}
+@keyframes br{50%{transform:scale(1.03,1.045)}}
+@keyframes sway{0%,100%{transform:rotate(calc(var(--hr,0deg) - 2deg))}50%{transform:rotate(calc(var(--hr,0deg) + 2deg))}}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+@keyframes wig{0%,86%,100%{transform:rotate(0)}91%{transform:rotate(-14deg)}96%{transform:rotate(7deg)}}
+@keyframes wave{from{transform:rotate(-120deg)}to{transform:rotate(-155deg)}}
+@keyframes jump{30%{transform:translate(var(--tx,0px),-22px) rotate(var(--r,0deg)) scale(1.07)}60%{transform:translate(var(--tx,0px),0) rotate(var(--r,0deg)) scale(.97)}}
+@keyframes pop{from{opacity:1;transform:translate(0,0) scale(.6)}to{opacity:0;transform:translate(var(--dx,0px),-95px) scale(1.2)}}
+@keyframes beat{50%{transform:scale(1.06)}}
+.bear.her{--fur:#FFF4EA; --ear:#FFC9DA; --r:5deg}
+.bear.him{--fur:#C98F5E; --ear:#E8BE93; --r:-5deg; margin-left:-24px}
+.bears .hh{position:absolute; top:-6px; left:50%; font-size:26px; line-height:1; animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px)}}
+
+/* Buttons and steps */
+.row{display:flex; gap:12px; align-items:center; justify-content:center; min-height:60px}
+button{font-family:inherit; cursor:pointer; transition:transform .15s ease,left .25s ease,top .25s ease}
+button:focus-visible{outline:3px solid var(--pink2); outline-offset:3px}
+.yes,.go{background:linear-gradient(180deg,var(--pink2),var(--pink)); color:#fff; border:0; border-radius:999px; padding:13px 34px; font:600 18px "Poppins",sans-serif; box-shadow:0 8px 24px rgba(255,92,147,.4)}
+.no{background:transparent; color:var(--ink); border:1px solid var(--line); border-radius:999px; padding:13px 26px; font:600 16px "Poppins",sans-serif; touch-action:none}
+.no.run{position:fixed; z-index:9; background:var(--card)}
+.yaas{font:clamp(64px,22vw,92px)/1 "Lilita One",Impact,sans-serif; color:var(--pink); -webkit-text-stroke:7px #fff; paint-order:stroke fill; transform:rotate(-8deg); text-shadow:0 6px 0 rgba(0,0,0,.25); margin-bottom:6px}
+.hbox{position:relative; width:150px; margin:34px 0 12px}
+.hbox svg.h{width:150px; display:block; transform-origin:50% 60%; animation:beat 1.4s ease-in-out infinite}
+.hbox .bear{position:absolute; width:62px; left:44px; top:-34px}
+.opts{display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; margin-top:6px}
+.opt{background:var(--opt); border:1px solid var(--line); color:var(--ink); border-radius:16px; padding:14px 12px; text-align:left; font-size:15px}
+.opt b{display:block; font-weight:600}
+.opt small{color:var(--muted); font-size:12px}
+.opt.sel{border-color:var(--pink); box-shadow:0 0 0 2px rgba(255,92,147,.35)}
+.pass{width:100%; background:var(--pass); color:var(--pass-ink); border-radius:18px; padding:16px 18px; text-align:left; margin:4px 0 18px}
+.pass h2{margin:0 0 8px; font-size:15px; font-weight:600}
+.pass div{display:flex; justify-content:space-between; gap:12px; padding:8px 0; border-top:1px dashed rgba(74,21,49,.25); font-size:14px}
+.pass span{opacity:.65}
+.pass b{font-weight:600; text-align:right}
+.heart{position:fixed; top:-40px; z-index:1; pointer-events:none; animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(115vh) rotate(40deg)}}
+@media (prefers-reduced-motion:reduce){.bear,.bear *,.hbox svg.h{animation:none!important} .pop{display:none} .heart{display:none} .bears .hh{animation:none} .step{animation:none} button{transition:none}}
+</style>
+</head>
+<body>
+
+<main class="card">
+  <div class="bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+  <section class="step on" id="ask">
+    <div class="bears" id="b1" aria-hidden="true"></div>
+    <h1 id="t"></h1>
+    <p id="sub"></p>
+    <div class="row">
+      <button class="yes" id="yes" type="button">Yes!</button>
+      <button class="no" id="no" type="button">No</button>
+    </div>
+  </section>
+
+  <section class="step" id="yaas">
+    <div class="yaas">YAAS!</div>
+    <div class="bears" id="b2" aria-hidden="true" style="height:120px"></div>
+  </section>
+
+  <section class="step" id="when">
+    <div class="hbox" id="b3" aria-hidden="true"></div>
+    <h1>Yay! When shall we celebrate?</h1>
+    <div class="opts" id="o1"></div>
+  </section>
+
+  <section class="step" id="where">
+    <div class="bears" id="b4" aria-hidden="true" style="height:100px"></div>
+    <h1>And where are we going?</h1>
+    <div class="opts" id="o2"></div>
+  </section>
+
+  <section class="step" id="pass">
+    <h1>It’s official!</h1>
+    <div class="pass">
+      <h2>💍 Engagement pass</h2>
+      <div><span>Who</span><b id="pwho"></b></div>
+      <div><span>When</span><b id="pwhen"></b></div>
+      <div><span>Where</span><b id="pwhere"></b></div>
+      <div><span>Bring</span><b>Just you</b></div>
+    </div>
+    <button class="go" id="share" type="button">Share the news</button>
+  </section>
+</main>
+
+<script>
+// ---- Edit these three lines ----
+var HER_NAME  = "Yvonne";
+var YOUR_NAME = "Mr Cristz";
+var MESSAGE   = "Every day with you feels like home. I want all of them.";
+// --------------------------------
+
+var $ = function(i){ return document.getElementById(i); };
+var ACC = {
+  her:'<path d="M72 17L58 9V25Z M72 17L86 9V25Z" fill="#FF5C93"/><circle cx="72" cy="17" r="4" fill="#C93A6E"/>',
+  him:'<path d="M50 86L36 78V94Z M50 86L64 78V94Z" fill="#6AA6E8"/><circle cx="50" cy="86" r="4" fill="#3E7BC4"/>'
+};
+function bear(k, extra){
+  var her = k==="her";
+  return '<svg class="bear '+k+(extra?' '+extra:'')+'" viewBox="0 0 100 112">'
+  +'<g class="bd"><g class="arm l"><ellipse class="f" cx="25" cy="88" rx="7" ry="12"/></g><g class="arm r"><ellipse class="f" cx="75" cy="88" rx="7" ry="12"/></g>'
+  +'<ellipse class="f" cx="50" cy="92" rx="26" ry="19"/><ellipse class="e" cx="50" cy="96" rx="14" ry="10"/></g>'
+  +'<g class="hd"><g class="ear a"><circle class="f" cx="24" cy="24" r="15"/><circle class="e" cx="24" cy="24" r="8"/></g>'
+  +'<g class="ear b"><circle class="f" cx="76" cy="24" r="15"/><circle class="e" cx="76" cy="24" r="8"/></g>'
+  +'<circle class="f" cx="50" cy="50" r="34"/><ellipse cx="50" cy="61" rx="15" ry="11" fill="#FFF3E8"/>'
+  +'<g class="eyes"><g class="pp"><circle class="k" cx="37" cy="45" r="4"/><circle cx="38.3" cy="43.7" r="1.3" fill="#fff"/></g><g class="pp"><circle class="k" cx="63" cy="45" r="4"/><circle cx="64.3" cy="43.7" r="1.3" fill="#fff"/></g></g>'
+  +'<ellipse class="k" cx="50" cy="55" rx="5.5" ry="4"/>'
+  +'<path class="m1" d="M50 59v3M50 62q-4 4-8 1M50 62q4 4 8 1" stroke="#3A1030" stroke-width="2" fill="none" stroke-linecap="round"/>'
+  +'<path class="sm k" d="M42 62Q50 74 58 62Z"/><path class="sm" d="M46 68Q50 72 54 68Z" fill="#FF7BA6"/>'
+  +'<circle class="bl" cx="29" cy="58" r="5"/><circle class="bl" cx="71" cy="58" r="5"/>'+(her?ACC.her:'')+'</g>'+(her?'':ACC.him)+'</svg>';
+}
+$("b1").innerHTML = bear("her")+bear("him")+'<span class="hh">💗</span>';
+$("b2").innerHTML = bear("her","wave happy");
+$("b4").innerHTML = bear("her")+bear("him");
+$("b3").innerHTML = '<svg class="h" viewBox="0 0 120 110"><path d="M60 104C20 72 4 52 4 30 4 14 17 4 31 4c12 0 23 7 29 18C66 11 77 4 89 4c14 0 27 10 27 26 0 22-16 42-56 74z" fill="#FF7BA6"/></svg>'+bear("her");
+$("t").textContent = HER_NAME + ", will you marry me?";
+$("sub").textContent = MESSAGE;
+$("pwho").textContent = HER_NAME + " & " + YOUR_NAME;
+
+// Bears: eyes and head follow the finger or cursor; tapping a bear makes them hug
+var taps = 0;
+function look(e){
+  document.querySelectorAll(".step.on .bear").forEach(function(b){
+    var r = b.getBoundingClientRect(), dx = e.clientX-(r.left+r.width/2), dy = e.clientY-(r.top+r.height*0.4);
+    var d = Math.hypot(dx,dy) || 1, k = Math.min(d,140)/140;
+    b.style.setProperty("--ex", (dx/d*2.6*k).toFixed(2)+"px");
+    b.style.setProperty("--ey", (dy/d*2.2*k).toFixed(2)+"px");
+    b.style.setProperty("--hr", (dx/d*5*k).toFixed(2)+"deg");
+  });
+}
+document.addEventListener("pointermove", look);
+document.addEventListener("pointerdown", look);
+function react(b){
+  b.classList.remove("jump"); void b.getBoundingClientRect(); b.classList.add("jump","happy");
+  var box = b.parentNode; box.classList.add("hug");
+  setTimeout(function(){ b.classList.remove("jump","happy"); box.classList.remove("hug"); }, 1400);
+  var r = b.getBoundingClientRect(), set = ["💖","💕","💗","✨"];
+  for (var i=0;i<4;i++){
+    var s = document.createElement("span");
+    s.className = "pop"; s.textContent = set[i];
+    s.style.left = (r.left+r.width/2+Math.random()*50-25)+"px"; s.style.top = (r.top+10)+"px";
+    s.style.setProperty("--dx", (Math.random()*70-35)+"px"); s.style.animationDelay = i*90+"ms";
+    document.body.appendChild(s);
+    setTimeout(function(el){ el.remove(); }, 1800, s);
+  }
+  taps++;
+  if (taps === 6 && $("ask").classList.contains("on")) $("sub").textContent = "Aww, okay. Now answer the question…";
+}
+document.addEventListener("click", function(e){
+  var b = e.target.closest && e.target.closest("svg.bear");
+  if (b) react(b);
+});
+
+// Steps
+var steps = ["ask","yaas","when","where","pass"], fill = [0,0,1,2,3], picks = {};
+function go(n){
+  steps.forEach(function(s,i){ $(s).classList.toggle("on", i===n); });
+  document.querySelectorAll(".bar i").forEach(function(el,i){ el.classList.toggle("on", i<=fill[n]); });
+}
+function opts(id, key, list, next){
+  list.forEach(function(o){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "opt"; b.innerHTML = "<b></b><small></small>";
+    b.children[0].textContent = o[0]; b.children[1].textContent = o[1];
+    b.onclick = function(){ picks[key] = o[0]; b.classList.add("sel"); setTimeout(next, 350); };
+    $(id).appendChild(b);
+  });
+}
+opts("o1","when",[["Tonight","just us two"],["Tomorrow","I’ll plan it"],["This weekend","no rush"],["Surprise me","you choose"]], function(){ go(3); });
+opts("o2","where",[["Dinner","candlelit"],["Stargazing","if skies are clear"],["A drive","windows down"],["Home","not going out"]], function(){
+  $("pwhen").textContent = picks.when; $("pwhere").textContent = picks.where; go(4);
+});
+
+// "No" dodges every tap, hover, focus and near-miss
+var yes = $("yes"), no = $("no"), dodges = 0;
+var labels = ["Really?","Are you sure?","Think again","Yes is right there","Nope, not allowed"];
+function dodge(){
+  dodges++;
+  no.classList.add("run");
+  no.textContent = labels[(dodges-1) % labels.length];
+  var w = no.offsetWidth, h = no.offsetHeight, pad = 12, vw = innerWidth, vh = innerHeight;
+  var yr = yes.getBoundingClientRect(), x, y, n = 0;
+  do {
+    x = pad + Math.random()*Math.max(1, vw-w-pad*2);
+    y = pad + Math.random()*Math.max(1, vh-h-pad*2);
+    n++;
+  } while (n<30 && x<yr.right+20 && x+w>yr.left-20 && y<yr.bottom+20 && y+h>yr.top-20);
+  no.style.left = x+"px"; no.style.top = y+"px";
+  var s = Math.min(1+dodges*0.1, 2);
+  yes.style.transform = "scale("+s+")"; yes.style.margin = (s-1)*14+"px";
+}
+["pointerenter","pointerdown","touchstart","mousedown","focus"].forEach(function(t){
+  no.addEventListener(t, function(e){ if (e.cancelable) e.preventDefault(); dodge(); if (t==="focus") no.blur(); }, {passive:false});
+});
+no.addEventListener("click", function(e){ e.preventDefault(); e.stopPropagation(); dodge(); });
+document.addEventListener("pointermove", function(e){
+  if (!$("ask").classList.contains("on")) return;
+  var r = no.getBoundingClientRect();
+  if (Math.hypot(e.clientX-(r.left+r.width/2), e.clientY-(r.top+r.height/2)) < 90) dodge();
+});
+addEventListener("resize", function(){ if (dodges) dodge(); });
+
+// Falling hearts and the Yes button
+function hearts(){
+  var set = ["💍","🎉","💖","💓"]
+  for (var i=0;i<30;i++){
+    var s = document.createElement("span");
+    s.className = "heart"; s.textContent = set[i%5];
+    s.style.left = Math.random()*100+"vw"; s.style.fontSize = 18+Math.random()*24+"px";
+    s.style.animationDuration = 3+Math.random()*3+"s"; s.style.animationDelay = Math.random()*1.2+"s";
+    document.body.appendChild(s);
+    setTimeout(function(el){ el.remove(); }, 8000, s);
+  }
+}
+yes.addEventListener("click", function(){ hearts(); go(1); setTimeout(function(){ go(2); }, 1700); });
+
+// Share button
+$("share").addEventListener("click", function(){
+  var text = HER_NAME+" said yes! 💍 "+picks.when+", "+picks.where+".";
+  var b = $("share");
+  try {
+    if (navigator.share) { navigator.share({text:text}); }
+    else { navigator.clipboard.writeText(text); b.textContent = "Copied"; }
+  } catch (e) { b.textContent = "Take a screenshot"; }
+});
+</script>
+</body>
+</html>
